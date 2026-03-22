@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d2145" />
+  <meta name="description" content="漢数字で表示する和風の電卓です。" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>和風の電卓</title>
   <style>
     :root {
@@ -423,6 +429,13 @@
     const displayWrap = document.querySelector(".display-wrap");
     if (displayWrap && typeof ResizeObserver !== "undefined") {
       new ResizeObserver(() => fitDisplayFont()).observe(displayWrap);
+    }
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
     }
   </script>
 </body>
